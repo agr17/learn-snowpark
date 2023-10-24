@@ -1,0 +1,13 @@
+# Snowpark environment file
+# https://docs.snowflake.com/en/developer-guide/snowpark/python/setup.html
+
+name: snowpark
+channels:
+  - snowflake
+dependencies:
+  - python=3.9
+  - openssl=3.0.9  # Addresses this issue with oscrypto: https://github.com/wbond/oscrypto/issues/75
+  - pip
+  - pip:
+      - "-r requirements.txt"
+      - "--editable ."
