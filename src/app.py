@@ -13,25 +13,19 @@ import sys
 
 def run(snowpark_session: Session) -> DataFrame:
     """
-    A sample stored procedure which creates a small DataFrame, prints it to the
-    console, and returns the number of rows in the table.
+    Generate a new table from IRIS data with sepal and petal sizes in cm pairs.
     """
 
-    combine_udf = udf(functions.combine)
+    combine_sizes = udf(functions.combine_sizes)
 
-    schema = ["col_1", "col_2"]
+    # Get DATA table
+    df = snowpark_session.read.table("DATA")
 
-    data = [
-        ("Welcome to ", "Snowflake!"),
-        ("Learn more: ", "https://www.snowflake.com/snowpark/"),
-    ]
-
-    df = snowpark_session.create_dataframe(data, schema)
-
-    df2 = df.select(combine_udf(col("col_1"), col("col_2")).as_("hello_world")).sort(
-        "hello_world", ascending=False
-    )
-
+    # Create new table with sepal and petal sizes
+    df2 = df.select(combine_sizes(col("SEPAL_LENGTH"), col("SEPAL_WIDTH")).as_("SEPAL_SIZE"),
+                    combine_sizes(col("PETAL_LENGTH"), col("PETAL_WIDTH")).as_("PETAL_SIZE"),
+                    col("CLASS").as_("SPECIES"))
+    
     return df2
 
 

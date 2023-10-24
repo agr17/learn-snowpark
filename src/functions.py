@@ -8,3 +8,10 @@ def combine(string_a: str, string_b: str) -> str:
     """
 
     return string_a + string_b
+
+def combine_sizes(length: float, width: float) -> str:
+    """
+    A sample UDF implementation
+    """
+
+    return str(length) + "cm x " + str(width) + "cm"
