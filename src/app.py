@@ -6,7 +6,10 @@ and testing.
 from snowflake.snowpark.session import Session
 from snowflake.snowpark.dataframe import col, DataFrame
 from snowflake.snowpark.functions import udf
+
+from src.util.local import get_env_var_config, get_json_config
 from src import functions
+import sys
 
 def run(snowpark_session: Session) -> DataFrame:
     """
@@ -33,12 +36,18 @@ def run(snowpark_session: Session) -> DataFrame:
 
 
 if __name__ == "__main__":
-    # This entrypoint is used for local development (`$ python src/procs/app.py`)
 
-    from src.util.local import get_env_var_config
+    # Args. with json or env vars
+    if len(sys.argv) > 1 and sys.argv[1] == '-h':
+        print('Usage: python app.py [json_path]')
+        print('If no json_path is provided, the script will attempt to use environment variables.')
+        sys.exit(0)
+    elif len(sys.argv) > 1:
+        connection_parameters = get_json_config(sys.argv[1])
+    else:
+        connection_parameters = get_env_var_config()
 
-    print("Creating session...")
-    session = Session.builder.configs(get_env_var_config()).create()
+    session = Session.builder.configs(connection_parameters).create()
     session.add_import(functions.__file__, 'src.functions')
 
     print("Running stored procedure...")

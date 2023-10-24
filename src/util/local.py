@@ -7,6 +7,7 @@ from os import environ
 
 import configparser
 import toml
+import json
 
 
 def get_env_var_config() -> dict:
@@ -54,3 +55,13 @@ def get_dev_config(
             "Error creating snowpark session - be sure you've logged into "
             "the SnowCLI and have a valid app.toml file",
         ) from exc
+
+def get_json_config(
+        json_path: str = "connection.json",
+) -> dict:
+    """
+    Returns a dictionary of the connection parameters using the connection.json
+    """
+    # TODO: Add validation, path checking, schema checking, etc.
+    session_config_dict = json.load(open(json_path))
+    return session_config_dict
