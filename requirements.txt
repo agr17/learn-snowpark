@@ -3,3 +3,6 @@ tomli
 toml
 pytest
 snowflake-vcrpy @ git+https://github.com/Snowflake-Labs/snowflake-vcrpy.git@v0.1.1
+ydata-profiling
+dtale
+sweetviz
