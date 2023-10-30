@@ -1,8 +1,32 @@
-# Python Project Template for Snowpark
+# Learn Snowpark
 
-Use this template to start writing data applications on Snowflake using Python.
+Learn Snowpark is a project aimed at acquiring proficiency in using Snowpark, a tool developed by Snowflake for running SQL queries in programming language environments like Python. This project is based on the official Snowflake-Labs template called 'snowpark-python-template' (https://github.com/Snowflake-Labs/snowpark-python-template).
+
+The initial task accomplished in this project involved uploading the classic Iris dataset to Snowflake for analysis, a common dataset in the field of machine learning. Following this, a series of comprehensive tests and analyses were conducted, including:
+
+- EDA (Exploratory Data Analysis): Extensive exploratory data analysis was performed using various tools such as ydata_profiling, sweetviz, and dtale. These tools were employed to gain valuable insights into the dataset, understand its characteristics, and identify patterns and trends in the data. The EDA process played a crucial role in preparing the data for further analysis and decision-making. 
 
 ## Setup
+
+### JSON connector
+
+The JSON connector has been developed by me so that I don't have to use environment variables. Simply create a *connection.json* file in the root of the project with the following format. 
+
+````json
+{
+    "account"   : "<replace with your account identifer>",
+    "user"      : "<replace with your username>",
+    "password"  : "<replace with your password>",
+    "role"      : "<replace with your role>",
+    "warehouse" : "<replace with your warehouse>",
+    "database"  : "<replace with your database>",
+    "schema"    : "<replace with your schema>"
+  }
+````
+
+Once we have it, we have to use the *get_json_config* function found in the *src/util/local.py* script.
+
+### Enviroment variables 
 
 Set the following environment variables with your Snowflake account information:
 
