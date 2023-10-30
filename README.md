@@ -28,7 +28,7 @@ Once we have it, we have to use the *get_json_config* function found in the *src
 
 ### Enviroment variables 
 
-Set the following environment variables with your Snowflake account information:
+Original connection mode of the template. Set the following environment variables with your Snowflake account information:
 
 ```bash
 # Linux/MacOS
@@ -76,11 +76,10 @@ Go to **File** > **Settings** > **Project** > **Python Interpreter** and select 
 
 ## Prereqs
 
-To develop your applications locally, you will need
-
 - A Snowflake account
 - Python 3.8 or greater
 - An IDE or code editor (VS Code, PyCharm, etc.)
+- Iris dataset: [https://archive.ics.uci.edu/dataset/53/iris](https://archive.ics.uci.edu/dataset/53/iris)
 
 ## Usage
 
@@ -101,6 +100,12 @@ You should see the following output:
 ------------------------------------------------------
 ```
 
+### EDA 
+
+```bash
+python src/eda.py <ydata | dtale | sweetviz> <connection.json>
+```
+
 ### Run tests
 
 You can run the test suite locally from the project root:
@@ -109,11 +114,6 @@ You can run the test suite locally from the project root:
 python -m pytest
 ```
 
-### Deploy to Snowflake
-
-The GitHub Actions [workflow file](.github/workflows/build-and-deploy.yml) allows you to continously deploy your objects to Snowflake. When you're ready,
-create secrets in your GitHub repository with the same name and values as the environment variables you created earler (`SNOWSQL_PWD`, `SNOWSQL_ACCOUNT`, etc.). The workflow will create a stage, upload the Python source code, and create the stored procedure object. For more information, see [`resources.sql`](resources.sql).
-
 ## Docs
 
 - [Snowpark Developer Guide for Python](https://docs.snowflake.com/en/developer-guide/snowpark/python/index)
@@ -121,7 +121,5 @@ create secrets in your GitHub repository with the same name and values as the en
 - [Snowpark API Reference](https://docs.snowflake.com/developer-guide/snowpark/reference/python/index.html)
 
 ## Contributing
-
-Have a question or ran into a bug? Please [file an issue](https://github.com/Snowflake-Labs/snowpark-python-template/issues/new) and let us know.
 
 Have an idea for an improvement? Fork this repository and open a PR with your idea!
