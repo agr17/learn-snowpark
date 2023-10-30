@@ -86,7 +86,7 @@ Go to **File** > **Settings** > **Project** > **Python Interpreter** and select 
 Once you've set your credentials and installed the packages, you can test your connection to Snowflake by executing the stored procedure in [`app.py`](src/procs/app.py):
 
 ```bash
-python src/app.py
+python src/app.py [connection.json]
 ```
 
 You should see the following output:
@@ -103,7 +103,7 @@ You should see the following output:
 ### EDA 
 
 ```bash
-python src/eda.py <ydata | dtale | sweetviz> <connection.json>
+python src/eda.py <ydata | dtale | sweetviz> [connection.json]
 ```
 
 ### Run tests
