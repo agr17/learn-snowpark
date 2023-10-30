@@ -4,7 +4,7 @@ Learn Snowpark is a project aimed at acquiring proficiency in using Snowpark, a 
 
 The initial task accomplished in this project involved uploading the classic Iris dataset to Snowflake for analysis, a common dataset in the field of machine learning. Following this, a series of comprehensive tests and analyses were conducted, including:
 
-- EDA (Exploratory Data Analysis): Extensive exploratory data analysis was performed using various tools such as ydata_profiling, sweetviz, and dtale. These tools were employed to gain valuable insights into the dataset, understand its characteristics, and identify patterns and trends in the data. The EDA process played a crucial role in preparing the data for further analysis and decision-making. 
+- EDA (Exploratory Data Analysis): Extensive exploratory data analysis was performed using various tools such as [ydata_profiling](https://docs.profiling.ydata.ai/4.6/), [sweetviz](https://github.com/fbdesignpro/sweetviz), and [dtale](https://github.com/man-group/dtale). These tools were employed to gain valuable insights into the dataset, understand its characteristics, and identify patterns and trends in the data. The EDA process played a crucial role in preparing the data for further analysis and decision-making. 
 
 ## Setup
 
