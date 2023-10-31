@@ -93,11 +93,17 @@ You should see the following output:
 
 ```
 ------------------------------------------------------
-|Hello world                                         |
+|"HELLO_WORLD"                                       |
 ------------------------------------------------------
-|Welcome to Snowflake!                               |
-|Learn more: https://www.snowflake.com/snowpark/     |
+|Welcome to Learn Snowpark!                          |
+|Learn more: https://github.com/agr17/learn-snow...  |
 ------------------------------------------------------
+```
+
+### IRIS sizes 
+
+```bash
+python src/sizes.py [connection.json]
 ```
 
 ### EDA 
