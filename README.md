@@ -1,10 +1,34 @@
-# Python Project Template for Snowpark
+# Learn Snowpark
 
-Use this template to start writing data applications on Snowflake using Python.
+Learn Snowpark is a project aimed at acquiring proficiency in using Snowpark, a tool developed by Snowflake for running SQL queries in programming language environments like Python. This project is based on the official Snowflake-Labs template called 'snowpark-python-template' (https://github.com/Snowflake-Labs/snowpark-python-template).
+
+The initial task accomplished in this project involved uploading the classic Iris dataset to Snowflake for analysis, a common dataset in the field of machine learning. Following this, a series of comprehensive tests and analyses were conducted, including:
+
+- EDA (Exploratory Data Analysis): Extensive exploratory data analysis was performed using various tools such as [ydata_profiling](https://docs.profiling.ydata.ai/4.6/), [sweetviz](https://github.com/fbdesignpro/sweetviz), and [dtale](https://github.com/man-group/dtale). These tools were employed to gain valuable insights into the dataset, understand its characteristics, and identify patterns and trends in the data. The EDA process played a crucial role in preparing the data for further analysis and decision-making. 
 
 ## Setup
 
-Set the following environment variables with your Snowflake account information:
+### JSON connector
+
+The JSON connector has been developed by me so that I don't have to use environment variables. Simply create a *connection.json* file in the root of the project with the following format. 
+
+````json
+{
+    "account"   : "<replace with your account identifer>",
+    "user"      : "<replace with your username>",
+    "password"  : "<replace with your password>",
+    "role"      : "<replace with your role>",
+    "warehouse" : "<replace with your warehouse>",
+    "database"  : "<replace with your database>",
+    "schema"    : "<replace with your schema>"
+  }
+````
+
+Once we have it, we have to use the *get_json_config* function found in the *src/util/local.py* script.
+
+### Enviroment variables 
+
+Original connection mode of the template. Set the following environment variables with your Snowflake account information:
 
 ```bash
 # Linux/MacOS
@@ -52,18 +76,17 @@ Go to **File** > **Settings** > **Project** > **Python Interpreter** and select 
 
 ## Prereqs
 
-To develop your applications locally, you will need
-
 - A Snowflake account
 - Python 3.8 or greater
 - An IDE or code editor (VS Code, PyCharm, etc.)
+- Iris dataset: [https://archive.ics.uci.edu/dataset/53/iris](https://archive.ics.uci.edu/dataset/53/iris)
 
 ## Usage
 
 Once you've set your credentials and installed the packages, you can test your connection to Snowflake by executing the stored procedure in [`app.py`](src/procs/app.py):
 
 ```bash
-python src/app.py
+python src/app.py [connection.json]
 ```
 
 You should see the following output:
@@ -77,6 +100,12 @@ You should see the following output:
 ------------------------------------------------------
 ```
 
+### EDA 
+
+```bash
+python src/eda.py <ydata | dtale | sweetviz> [connection.json]
+```
+
 ### Run tests
 
 You can run the test suite locally from the project root:
@@ -85,11 +114,6 @@ You can run the test suite locally from the project root:
 python -m pytest
 ```
 
-### Deploy to Snowflake
-
-The GitHub Actions [workflow file](.github/workflows/build-and-deploy.yml) allows you to continously deploy your objects to Snowflake. When you're ready,
-create secrets in your GitHub repository with the same name and values as the environment variables you created earler (`SNOWSQL_PWD`, `SNOWSQL_ACCOUNT`, etc.). The workflow will create a stage, upload the Python source code, and create the stored procedure object. For more information, see [`resources.sql`](resources.sql).
-
 ## Docs
 
 - [Snowpark Developer Guide for Python](https://docs.snowflake.com/en/developer-guide/snowpark/python/index)
@@ -97,7 +121,5 @@ create secrets in your GitHub repository with the same name and values as the en
 - [Snowpark API Reference](https://docs.snowflake.com/developer-guide/snowpark/reference/python/index.html)
 
 ## Contributing
-
-Have a question or ran into a bug? Please [file an issue](https://github.com/Snowflake-Labs/snowpark-python-template/issues/new) and let us know.
 
 Have an idea for an improvement? Fork this repository and open a PR with your idea!
